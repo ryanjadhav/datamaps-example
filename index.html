@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="/datamaps.world.js"></script>
+
+
+<div id="container" style="position: relative; width: 980px; height: 600px;"></div>
+<script>
+    var map = new Datamap({
+      element: document.getElementById('container'),
+      projection: 'mercator',
+      geographyConfig: {
+        popupOnHover: false,
+        highlightOnHover: false,
+        borderColor: 'black',
+      },
+      bubblesConfig: {
+        popupOnHover: false,
+        highlightOnHover: false,
+        highlightFillColor: '#33adff',
+        highlightBorderColor: 'white',
+        highlightBorderWidth: 2
+      },
+      fills: {
+        defaultFill: 'black',
+        viewers: '#0099ff'
+      }
+    });
+
+    var dayData = [
+      {
+        fillKey: 'viewers',
+        radius: 25,
+        latitude: 11.415,
+        longitude: 165.1619
+      },
+      {
+        fillKey: 'viewers',
+        radius: 30,
+        latitude: 37.7833,
+        longitude: -122.4167
+      },
+      {
+        fillKey: 'viewers',
+        radius: 30,
+        latitude: 47.6097,
+        longitude: -122.3331
+      },
+      {
+        fillKey: 'viewers',
+        radius: 35,
+        latitude: 40.7127,
+        longitude: -74.0059
+      },
+      {
+        fillKey: 'viewers',
+        radius: 20,
+        latitude: -33.8600,
+        longitude: 151.2094
+      },
+      {
+        fillKey: 'viewers',
+        radius: 30,
+        latitude: 35.6800,
+        longitude: 139.7700
+      },
+      {
+        fillKey: 'viewers',
+        radius: 10,
+        latitude: 51.5072,
+        longitude: 0.1275
+      },
+      {
+        fillKey: 'viewers',
+        radius: 15,
+        latitude: 39.9139,
+        longitude: 116.3917
+      }
+    ];
+
+    var nightData = [
+      {
+        fillKey: 'viewers',
+        radius: 15,
+        latitude: 11.415,
+        longitude: 165.1619
+      },
+      {
+        fillKey: 'viewers',
+        radius: 20,
+        latitude: 37.7833,
+        longitude: -122.4167
+      },
+      {
+        fillKey: 'viewers',
+        radius: 20,
+        latitude: 47.6097,
+        longitude: -122.3331
+      },
+      {
+        fillKey: 'viewers',
+        radius: 25,
+        latitude: 40.7127,
+        longitude: -74.0059
+      },
+      {
+        fillKey: 'viewers',
+        radius: 10,
+        latitude: -33.8600,
+        longitude: 151.2094
+      },
+      {
+        fillKey: 'viewers',
+        radius: 20,
+        latitude: 35.6800,
+        longitude: 139.7700
+      },
+      {
+        fillKey: 'viewers',
+        radius: 5,
+        latitude: 51.5072,
+        longitude: 0.1275
+      },
+      {
+        fillKey: 'viewers',
+        radius: 10,
+        latitude: 39.9139,
+        longitude: 116.3917
+      }
+    ];
+
+    var isDayTime = true;
+
+    map.bubbles(dayData);
+
+    setInterval(function() {
+      if (isDayTime) {
+        isDayTime = false;
+        map.bubbles(nightData);
+      } else {
+        isDayTime = true;
+        map.bubbles(dayData);
+      }
+    }, 4000);
+</script>
+
+</body>
